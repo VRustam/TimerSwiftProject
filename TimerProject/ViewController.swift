@@ -1,0 +1,45 @@
+//
+//  ViewController.swift
+//  TimerProject
+//
+//  Created by Rustam Valizada on 01.09.21.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    var timer = Timer()
+    var counter = 0
+
+    @IBOutlet weak var timerLabel: UILabel!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        counter = 10
+        timerLabel.text = "Timer : \(counter)"
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFunction), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func timerFunction(){
+        timerLabel.text = "Timer : \(counter)"
+        counter -= 1
+        
+        if counter == 0 {
+            timer.invalidate()
+            timerLabel.text = "Time s Over"
+        }
+    }
+    
+    
+    @IBAction func buttonClicked(_ sender: Any) {
+        print("button clicked")
+    }
+    
+
+}
+
